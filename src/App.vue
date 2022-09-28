@@ -1,15 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+      <BaseAlert
+        v-if="showAlert"
+        :variant="variant"
+        @close="onClose()"
+        >
+          {{text}}
+      </BaseAlert>
+     
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import BaseAlert from './components/BaseAlert.vue';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  components: { BaseAlert},
+  data(){
+    return {
+        showAlert: true,
+        variant: 'success',
+        text: 'Seu formulário foi enviado'
+    }
+  },
+  methods: {
+    onClose() {
+      this.showAlert = false
+      console.log('on close');
+    }
   }
 }
 </script>
@@ -19,8 +39,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 60px;
 }
 </style>
